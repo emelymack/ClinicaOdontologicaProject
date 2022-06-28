@@ -19,25 +19,30 @@ public class Address {
     private String city;
     @Column
     private String province;
-    @OneToOne(mappedBy = "address")
+
+    /*@OneToOne(mappedBy = "address")
     private Patient patient;
+    public Patient getPaciente() {
+        return patient;
+    }
+    public void setPaciente(Patient patient) {
+        this.patient = patient;
+    }*/
 
     //constructors
     public Address(){}
-    public Address(String street, int number, String city, String province, Patient patient) {
+    public Address(String street, int number, String city, String province) {
         this.street = street;
         this.number = number;
         this.city = city;
         this.province = province;
-        this.patient = patient;
     }
-    public Address(Long id, String street, int number, String city, String province, Patient patient) {
+    public Address(Long id, String street, int number, String city, String province) {
         this.id = id;
         this.street = street;
         this.number = number;
         this.city = city;
         this.province = province;
-        this.patient = patient;
     }
 
     //getters & setters
@@ -77,14 +82,6 @@ public class Address {
         this.province = province;
     }
 
-    public Patient getPaciente() {
-        return patient;
-    }
-
-    public void setPaciente(Patient patient) {
-        this.patient = patient;
-    }
-
     @Override
     public String toString() {
         return "Address {" +
@@ -93,7 +90,6 @@ public class Address {
                 "   Number: " + number + '\n' +
                 "   City: " + city + '\n' +
                 "   Province: " + province + '\n' +
-                "   Patient: " + patient + '\n' +
                 '}';
     }
 }

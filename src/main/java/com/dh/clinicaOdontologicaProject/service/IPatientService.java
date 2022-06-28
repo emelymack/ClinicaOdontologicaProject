@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IPatientService {
-    List<Patient> listarPacientes();
-    Patient guardarPaciente(Patient patient);
-    Optional<Patient> buscarXId(Long id);
-    void eliminarPaciente(Long id);
-    Patient actualizarPaciente(Patient patient);
+    List<Patient> listPatients();
+    Patient savePatient(Patient patient);
+    Optional<Patient> findById(Long id);
+    void deletePatient(Long id);
+    Patient updatePatient(Patient patient);
 }
 
 

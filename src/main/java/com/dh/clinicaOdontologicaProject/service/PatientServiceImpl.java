@@ -15,19 +15,19 @@ public class PatientServiceImpl implements IPatientService {
     private PatientRepository patientRepository;
 
     @Override
-    public List<Patient> listarPacientes() {
+    public List<Patient> listPatients() {
         return patientRepository.findAll();
     }
 
     @Override
-    public Optional<Patient> buscarXId(Long id) { return patientRepository.findById(id); }
+    public Optional<Patient> findById(Long id) { return patientRepository.findById(id); }
 
     @Override
-    public void eliminarPaciente(Long id) { patientRepository.deleteById(id); }
+    public void deletePatient(Long id) { patientRepository.deleteById(id); }
 
     @Override
-    public Patient guardarPaciente(Patient patient) { return patientRepository.save(patient); }
+    public Patient savePatient(Patient patient) { return patientRepository.save(patient); }
 
     @Override
-    public Patient actualizarPaciente(Patient patient) { return patientRepository.save(patient); }
+    public Patient updatePatient(Patient patient) { return patientRepository.save(patient); }
 }

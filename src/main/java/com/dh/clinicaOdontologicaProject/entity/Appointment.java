@@ -13,7 +13,7 @@ public class Appointment {
     @SequenceGenerator(name = "appointment_sequence", sequenceName = "appointment_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_sequence")
     private Long id;
-    @OneToOne
+    /*@OneToOne
     private Patient patient;
     @OneToMany //?
     private Dentist dentist;
@@ -74,5 +74,5 @@ public class Appointment {
                 "   Dentist: " + dentist + '\n' +
                 "   date: " + date + '\n' +
                 '}';
-    }
+    }*/
 }

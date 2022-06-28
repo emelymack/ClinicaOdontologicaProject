@@ -1,5 +1,7 @@
 package com.dh.clinicaOdontologicaProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -9,8 +11,8 @@ public class Patient {
 
     //attributes
     @Id
-    @SequenceGenerator(name = "paciente_sequence", sequenceName = "paciente_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_sequence")
+    @SequenceGenerator(name = "patient_sequence", sequenceName = "patient_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_sequence")
     private Long id;
 
     @Column
@@ -29,8 +31,9 @@ public class Patient {
     private Address address;
 
     @ManyToOne
-    @JoinColumn(name = "dentist_id", nullable = false)
-    private Dentist dentist;
+    @JoinColumn(name = "dentist_id")
+    @JsonIgnore
+    private Patient dentist;
 
     //constructors
     public Patient(){}
@@ -97,14 +100,6 @@ public class Patient {
         this.entryDate = entryDate;
     }
 
-    public Address getDomicilio() {
-        return address;
-    }
-
-    public void setDomicilio(Address address) {
-        this.address = address;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -113,12 +108,12 @@ public class Patient {
         this.address = address;
     }
 
-    public Dentist getDentist() {
+    public Patient getDentist() {
         return dentist;
     }
 
-    public void setDentist(Dentist dentist) {
-        this.dentist = dentist;
+    public void setDentist(Patient patient) {
+        this.dentist = patient;
     }
 
     @Override
