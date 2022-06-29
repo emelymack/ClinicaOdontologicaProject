@@ -52,7 +52,7 @@ public class DentistController {
         Optional<Dentist> dentistSearch = dentistService.findById(id);
         if (dentistSearch.isPresent()) {
             dentistService.deleteDentist(id);
-            return ResponseEntity.ok("Dentist with id: "+id+" has been deleted from the database");
+            return ResponseEntity.ok("Dentist with id: "+id+" has been successfully deleted from the database");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

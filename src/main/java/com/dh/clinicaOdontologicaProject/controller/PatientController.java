@@ -40,7 +40,7 @@ public class PatientController {
     public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient){
         Optional<Patient> patientSearch = patientService.findById(patient.getId());
         if(patientSearch.isPresent()){
-            return ResponseEntity.ok(patientService.savePatient(patient));
+            return ResponseEntity.ok(patientService.updatePatient(patient));
         } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -51,7 +51,7 @@ public class PatientController {
         Optional<Patient> patientSearch = patientService.findById(id);
         if(patientSearch.isPresent()){
             patientService.deletePatient(id);
-            return ResponseEntity.ok("Patient with id: "+id+" has been deleted from the database");
+            return ResponseEntity.ok("Patient with id: "+id+" has been successfully deleted from the database");
         } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
