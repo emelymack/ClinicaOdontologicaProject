@@ -13,23 +13,26 @@ public class Appointment {
     @SequenceGenerator(name = "appointment_sequence", sequenceName = "appointment_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_sequence")
     private Long id;
-    /*@OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
-    @OneToMany //?
+
+    @ManyToOne
+    @JoinColumn(name = "dentist_id", nullable = false)
     private Dentist dentist;
+
     private LocalDate date;
 
     //private LocalTime time; ?
 
     //constructors
     public Appointment(){}
-
     public Appointment(Patient patient, Dentist dentist, LocalDate date) {
         this.patient = patient;
         this.dentist = dentist;
         this.date = date;
     }
-
     public Appointment(Long id, Patient patient, Dentist dentist, LocalDate date) {
         this.id = id;
         this.patient = patient;
@@ -74,5 +77,5 @@ public class Appointment {
                 "   Dentist: " + dentist + '\n' +
                 "   date: " + date + '\n' +
                 '}';
-    }*/
+    }
 }

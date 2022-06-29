@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Patients")
@@ -26,14 +28,15 @@ public class Patient {
     @Column
     private LocalDate entryDate;
 
+    //como PACIENTE, puede que tengamos más de un turno
+    @OneToMany(mappedBy = "patient")
+    @JsonIgnore
+    private Set<Appointment> appointments = new HashSet<>();
+
     @OneToOne(cascade = CascadeType.ALL) //cuando agg el paciente, se agg el domicilio
     @JoinColumn(name = "id_address", referencedColumnName = "id")
     private Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "dentist_id")
-    @JsonIgnore
-    private Patient dentist;
 
     //constructors
     public Patient(){}
@@ -108,12 +111,12 @@ public class Patient {
         this.address = address;
     }
 
-    public Patient getDentist() {
-        return dentist;
+    public Set<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setDentist(Patient patient) {
-        this.dentist = patient;
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     @Override

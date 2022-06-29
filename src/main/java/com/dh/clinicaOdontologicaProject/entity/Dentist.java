@@ -3,7 +3,9 @@ package com.dh.clinicaOdontologicaProject.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Dentists")
@@ -16,20 +18,22 @@ public class Dentist {
     private Long id;
     private String surname;
     private String name;
-    private int license;
+    private Integer license;
 
+    //como ODONTÓLOGO, vamos a tener más de un turno
+    //Paciente y Odontólogo se relacionan mediante la tabla de Turnos
     @OneToMany(mappedBy = "dentist")
     @JsonIgnore
-    private List<Patient> patients;
+    private Set<Appointment> appointments = new HashSet<>();
 
     //constructors
     public Dentist(){}
-    public Dentist(String surname, String name, int license) {
+    public Dentist(String surname, String name, Integer license) {
         this.surname = surname;
         this.name = name;
         this.license = license;
     }
-    public Dentist(Long id, String surname, String name, int license) {
+    public Dentist(Long id, String surname, String name, Integer license) {
         this.id = id;
         this.surname = surname;
         this.name = name;
@@ -57,12 +61,20 @@ public class Dentist {
         this.name = name;
     }
 
-    public int getLicense() {
+    public Integer getLicense() {
         return license;
     }
 
-    public void setLicense(int license) {
+    public void setLicense(Integer license) {
         this.license = license;
+    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     @Override
