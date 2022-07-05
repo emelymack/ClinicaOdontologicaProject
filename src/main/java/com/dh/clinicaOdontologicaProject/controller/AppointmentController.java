@@ -1,9 +1,13 @@
 package com.dh.clinicaOdontologicaProject.controller;
 
 import com.dh.clinicaOdontologicaProject.entity.Appointment;
+import com.dh.clinicaOdontologicaProject.entity.Dentist;
+import com.dh.clinicaOdontologicaProject.entity.Patient;
 import com.dh.clinicaOdontologicaProject.exceptions.BadRequestException;
 import com.dh.clinicaOdontologicaProject.exceptions.ResourceNotFoundException;
+import com.dh.clinicaOdontologicaProject.service.DentistService;
 import com.dh.clinicaOdontologicaProject.service.IAppointmentService;
+import com.dh.clinicaOdontologicaProject.service.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,10 @@ public class AppointmentController {
 
     @Autowired
     private IAppointmentService appointmentService;
+    @Autowired
+    private PatientServiceImpl patientService;
+    @Autowired
+    private DentistService dentistService;
 
     @GetMapping
     public ResponseEntity<List<Appointment>> getAppointments(){
@@ -36,7 +44,9 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<Appointment> postNewAppointment(@RequestBody Appointment appointment) throws BadRequestException {
-        if(appointment.getPatient() != null && appointment.getDentist() != null){
+        Optional<Patient> patientReq = patientService.findById(appointment.getPatient().getId());
+        Optional<Dentist> dentistReq = dentistService.findById(appointment.getDentist().getId());
+        if(patientReq.isPresent() && dentistReq.isPresent()){
             return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
         } else {
             throw new BadRequestException("Couldn't register appointment. Patient or dentist are non-existent.");
