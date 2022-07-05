@@ -1,6 +1,7 @@
 package com.dh.clinicaOdontologicaProject.controller;
 
 import com.dh.clinicaOdontologicaProject.entity.Dentist;
+import com.dh.clinicaOdontologicaProject.exceptions.ResourceNotFoundException;
 import com.dh.clinicaOdontologicaProject.service.IDentistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,13 +49,13 @@ public class DentistController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDentist(@PathVariable Long id){
+    public ResponseEntity<String> deleteDentist(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Dentist> dentistSearch = dentistService.findById(id);
         if (dentistSearch.isPresent()) {
             dentistService.deleteDentist(id);
-            return ResponseEntity.ok("Dentist with id: "+id+" has been successfully deleted from the database");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.ok("Dentist with id '"+id+"' has been successfully deleted from the database");
+        } else{
+            throw new ResourceNotFoundException("Dentist with id '"+id+"' doesn't exist in our database.");
         }
     }
 
