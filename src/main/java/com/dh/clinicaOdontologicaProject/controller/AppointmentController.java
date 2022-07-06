@@ -44,13 +44,7 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<Appointment> postNewAppointment(@RequestBody Appointment appointment) throws BadRequestException {
-        Optional<Patient> patientReq = patientService.findById(appointment.getPatient().getId());
-        Optional<Dentist> dentistReq = dentistService.findById(appointment.getDentist().getId());
-        if(patientReq.isPresent() && dentistReq.isPresent()){
-            return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
-        } else {
-            throw new BadRequestException("Couldn't register appointment. Patient or dentist are non-existent.");
-        }
+        return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
     }
 
     @PutMapping

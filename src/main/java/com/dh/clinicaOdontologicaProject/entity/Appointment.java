@@ -33,12 +33,6 @@ public class Appointment {
         this.dentist = dentist;
         this.date = date;
     }
-    public Appointment(Long id, Patient patient, Dentist dentist, LocalDate date) {
-        this.id = id;
-        this.patient = patient;
-        this.dentist = dentist;
-        this.date = date;
-    }
 
     //getters & setters
     public Long getId() {
@@ -67,6 +61,27 @@ public class Appointment {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public static boolean isAppointmentDataCorrect(Appointment appointment){
+        boolean respPatient = false;
+        boolean respDentist = false;
+        if(appointment != null && appointment.date != null){
+            if(appointment.patient.getId() != null
+            && appointment.patient.getSurname() != null
+            && appointment.patient.getName() != null
+            && appointment.patient.getEmail() != null
+            && appointment.patient.getDni() != null){
+                respPatient = true;
+            }
+            if(appointment.dentist.getId() != null
+            && appointment.dentist.getSurname() != null
+            && appointment.dentist.getName() != null
+            && appointment.dentist.getLicense() != null){
+                respDentist = true;
+            }
+        }
+        return respPatient && respDentist;
     }
 
     @Override

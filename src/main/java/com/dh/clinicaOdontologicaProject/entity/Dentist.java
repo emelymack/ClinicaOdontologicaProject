@@ -33,12 +33,6 @@ public class Dentist {
         this.name = name;
         this.license = license;
     }
-    public Dentist(Long id, String surname, String name, Integer license) {
-        this.id = id;
-        this.surname = surname;
-        this.name = name;
-        this.license = license;
-    }
 
     //getters & setters
     public Long getId() {

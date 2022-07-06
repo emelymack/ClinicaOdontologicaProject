@@ -24,7 +24,7 @@ public class Patient {
     @Column
     private String email;
     @Column
-    private int dni;
+    private Integer dni;
     @Column
     private LocalDate entryDate;
 
@@ -40,16 +40,7 @@ public class Patient {
 
     //constructors
     public Patient(){}
-    public Patient(String surname, String name, String email, int dni, LocalDate entryDate, Address address) {
-        this.surname = surname;
-        this.name = name;
-        this.email = email;
-        this.dni = dni;
-        this.entryDate = entryDate;
-        this.address = address;
-    }
-    public Patient(Long id, String surname, String name, String email, int dni, LocalDate entryDate, Address address) {
-        this.id = id;
+    public Patient(String surname, String name, String email, Integer dni, LocalDate entryDate, Address address) {
         this.surname = surname;
         this.name = name;
         this.email = email;
@@ -87,11 +78,11 @@ public class Patient {
         this.email = email;
     }
 
-    public int getDni() {
+    public Integer getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(Integer dni) {
         this.dni = dni;
     }
 

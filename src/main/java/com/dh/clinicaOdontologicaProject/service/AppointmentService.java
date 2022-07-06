@@ -1,6 +1,7 @@
 package com.dh.clinicaOdontologicaProject.service;
 
 import com.dh.clinicaOdontologicaProject.entity.Appointment;
+import com.dh.clinicaOdontologicaProject.exceptions.BadRequestException;
 import com.dh.clinicaOdontologicaProject.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,12 @@ public class AppointmentService implements IAppointmentService{
     }
 
     @Override
-    public Appointment saveAppointment(Appointment appointment) {
-        return appointmentRepository.save(appointment);
+    public Appointment saveAppointment(Appointment appointment) throws BadRequestException{
+        if (Appointment.isAppointmentDataCorrect(appointment)) {
+            return appointmentRepository.save(appointment);
+        } else {
+            throw new BadRequestException("Patient or dentist data are non-existent.");
+        }
     }
 
     @Override

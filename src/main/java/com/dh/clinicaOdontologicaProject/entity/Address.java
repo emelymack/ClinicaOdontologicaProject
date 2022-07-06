@@ -37,13 +37,6 @@ public class Address {
         this.city = city;
         this.province = province;
     }
-    public Address(Long id, String street, int number, String city, String province) {
-        this.id = id;
-        this.street = street;
-        this.number = number;
-        this.city = city;
-        this.province = province;
-    }
 
     //getters & setters
     public Long getId() {
