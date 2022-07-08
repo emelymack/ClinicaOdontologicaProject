@@ -3,16 +3,17 @@ package com.dh.clinicaOdontologicaProject.loginSecurity;
 import com.dh.clinicaOdontologicaProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+/*import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;*/
 
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@Configuration
+//@EnableWebSecurity
+public class WebSecurityConfig {
+        //extends WebSecurityConfigurerAdapter {
 
-    private UserService userService;
+    /*private UserService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     public WebSecurityConfig(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder){
@@ -26,9 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/patients")
                 .hasRole("USER")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
-                .logout();
-    }
+                .logout()
+                .csrf().disable();
+    }*/
 }

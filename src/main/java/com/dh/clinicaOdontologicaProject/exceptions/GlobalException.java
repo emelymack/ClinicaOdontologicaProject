@@ -17,4 +17,9 @@ public class GlobalException extends Exception{
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ERROR! --> Details: "+ bre.getMessage());
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> IllegalArgumentErrorMgmt(IllegalArgumentException iae){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR! --> Details: "+iae.getMessage());
+    }
+
 }

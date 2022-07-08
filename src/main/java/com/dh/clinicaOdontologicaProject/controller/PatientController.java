@@ -19,10 +19,14 @@ public class PatientController {
     private IPatientService patientService;
 
     @GetMapping
-    public ResponseEntity<List<Patient> > getPatients(){ return ResponseEntity.ok(patientService.listPatients()); }
+    public ResponseEntity<List<Patient>> getPatients(){
+        System.out.println("Getting patients...");
+        return ResponseEntity.ok(patientService.listPatients());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Patient> findPatient(@PathVariable Long id){
+        System.out.println("Looking for patient with id "+id+"...");
         Optional<Patient> patientSearch = patientService.findById(id);
         if(patientSearch.isPresent()){
             return ResponseEntity.ok(patientSearch.get());
@@ -34,11 +38,13 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> postNewPatient(@RequestBody Patient patient){
+        System.out.println("Registering new patient...");
         return ResponseEntity.ok(patientService.savePatient(patient));
     }
 
     @PutMapping
     public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient){
+        System.out.println("Updating patient...");
         Optional<Patient> patientSearch = patientService.findById(patient.getId());
         if(patientSearch.isPresent()){
             return ResponseEntity.ok(patientService.updatePatient(patient));
@@ -49,6 +55,7 @@ public class PatientController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePatient(@PathVariable Long id) throws ResourceNotFoundException{
+        System.out.println("Deleting patient...");
         Optional<Patient> patientSearch = patientService.findById(id);
         if(patientSearch.isPresent()){
             patientService.deletePatient(id);

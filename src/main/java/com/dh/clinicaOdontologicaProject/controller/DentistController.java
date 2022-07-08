@@ -20,11 +20,13 @@ public class DentistController {
 
     @GetMapping
     public ResponseEntity<List<Dentist>> getDentists() {
+        System.out.println("Getting dentists...");
         return ResponseEntity.ok(dentistService.listDentists());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Dentist> findDentist(@PathVariable Long id) {
+        System.out.println("Looking for dentist with id "+id+"...");
         Optional<Dentist> dentistSearch = dentistService.findById(id);
         if (dentistSearch.isPresent()) {
             return ResponseEntity.ok(dentistSearch.get());
@@ -35,11 +37,13 @@ public class DentistController {
 
     @PostMapping
     public ResponseEntity<Dentist> postNewDentist(@RequestBody Dentist dentist){
+        System.out.println("Registering new dentist...");
         return ResponseEntity.ok(dentistService.saveDentist(dentist));
     }
 
     @PutMapping
     public ResponseEntity<Dentist> updateDentist(@RequestBody Dentist dentist){
+        System.out.println("Updating dentist...");
         Optional<Dentist> dentistSearch = dentistService.findById(dentist.getId());
         if (dentistSearch.isPresent()) {
             return ResponseEntity.ok(dentistService.updateDentist(dentist));
@@ -50,6 +54,7 @@ public class DentistController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDentist(@PathVariable Long id) throws ResourceNotFoundException {
+        System.out.println("Deleting dentist...");
         Optional<Dentist> dentistSearch = dentistService.findById(id);
         if (dentistSearch.isPresent()) {
             dentistService.deleteDentist(id);

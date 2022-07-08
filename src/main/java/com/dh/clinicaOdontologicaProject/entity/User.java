@@ -1,8 +1,8 @@
 package com.dh.clinicaOdontologicaProject.entity;
 import com.dh.clinicaOdontologicaProject.loginSecurity.AppUserRoles;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,7 +10,8 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User {
+        //implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
@@ -69,13 +70,13 @@ public class User implements UserDetails {
     }
 
     //UserDetails methods
-    @Override
+   /* @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRoles.name());
         return Collections.singletonList(grantedAuthority);
-    }
+    }*/
 
-    @Override
+    //@Override
     public String getUsername() {
         return userName;
     }
@@ -88,7 +89,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    @Override
+    /*@Override
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -106,7 +107,7 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
+    }*/
 
 
 }
