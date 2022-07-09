@@ -3,6 +3,7 @@ package com.dh.clinicaOdontologicaProject.controller;
 import com.dh.clinicaOdontologicaProject.entity.Dentist;
 import com.dh.clinicaOdontologicaProject.exceptions.ResourceNotFoundException;
 import com.dh.clinicaOdontologicaProject.service.IDentistService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/dentists")
 public class DentistController {
+    private static final Logger logger = Logger.getLogger(Dentist.class);
 
     @Autowired
     private IDentistService dentistService;

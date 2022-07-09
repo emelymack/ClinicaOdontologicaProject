@@ -8,6 +8,7 @@ import com.dh.clinicaOdontologicaProject.exceptions.ResourceNotFoundException;
 import com.dh.clinicaOdontologicaProject.service.DentistService;
 import com.dh.clinicaOdontologicaProject.service.IAppointmentService;
 import com.dh.clinicaOdontologicaProject.service.PatientServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
+    private static final Logger logger = Logger.getLogger(AppointmentController.class);
 
     @Autowired
     private IAppointmentService appointmentService;
@@ -33,12 +35,13 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Appointment> findAppointment(@PathVariable Long id){
+    public ResponseEntity<Appointment> findAppointment(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Appointment> appointmentSearch = appointmentService.findById(id);
         if(appointmentSearch.isPresent()){
             return ResponseEntity.ok(appointmentSearch.get());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            logger.error("Appointment searched does not exist.");
+            throw new ResourceNotFoundException("Appointment with id "+id+" doesn't exist.");
         }
     }
 
@@ -48,12 +51,13 @@ public class AppointmentController {
     }
 
     @PutMapping
-    public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment){
+    public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment) throws ResourceNotFoundException {
         Optional<Appointment> appointmentSearch = appointmentService.findById(appointment.getId());
         if(appointmentSearch.isPresent()){
             return ResponseEntity.ok(appointmentService.updateAppointment(appointment));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            logger.error("Appointment required for UPDATE does not exist.");
+            throw new ResourceNotFoundException("Appointment with id '"+appointment.getId()+"' doesn't exist.");
         }
     }
 
@@ -65,6 +69,7 @@ public class AppointmentController {
             appointmentService.deleteAppointment(id);
             return ResponseEntity.ok("Appointment with id '"+id+"' has been successfully deleted from the database.");
         } else{
+            logger.error("Appointment required for DELETE does not exist.");
             throw new ResourceNotFoundException("Appointment with id '"+id+"' doesn't exist.");
         }
     }

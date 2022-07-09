@@ -2,18 +2,17 @@ package com.dh.clinicaOdontologicaProject.service;
 import com.dh.clinicaOdontologicaProject.entity.User;
 import com.dh.clinicaOdontologicaProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-//@Service
-public class UserService {
-        //implements UserDetailsService {
+@Service
+public class UserService implements UserDetailsService {
 
-    /*private final UserRepository userRepository;
+    private final UserRepository userRepository;
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -27,5 +26,5 @@ public class UserService {
         } else {
             throw new UsernameNotFoundException("Username not found in our database.");
         }
-    }*/
+    }
 }
