@@ -45,6 +45,14 @@
     </div>
 </nav>
 
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item indexLink">
+            <a class="nav-link" href="/index.html">Back to Home</a>
+        </li>
+    </ul>
+</div>
+
 <div class="container" style="margin-top:20px">
     <div class="row">
         <div class="col-sm">
@@ -67,5 +75,35 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-sm-6" style="display:none; margin-top:20px; background-color:#e6fffa; width: 800px; margin: 0 auto;" id="div_dentist_updating">
+        <h6>Update Dentist</h6>
+        <form id="update_dentist_form">
+            <div class="form-group">
+                <label>ID:</label>
+                <input class="form-control" type="text" id="dentist_id" readonly>
+            </div>
+            <div class="form-group">
+                <label>Surname:</label>
+                <input class="form-control" type="text" id="surname" placeholder="Surname"
+                       maxlength="30">
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <input class="form-control" type="text" id="name" placeholder="Name"
+                       maxlength="30">
+            </div>
+            <div class="form-group">
+                <label>License:</label>
+                <input class="form-control" type="number" id="license" placeholder="Professional license number">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-update-dentist">Update</button>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

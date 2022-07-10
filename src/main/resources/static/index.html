@@ -20,15 +20,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOdont" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dentists</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownOdont">
-                    <a class="dropdown-item" href="post_dentist.html">Add New Dentist</a>
-                    <a class="dropdown-item" href="get_all_dentists.html">List Dentists</a>
+                    <a class="dropdown-item" href="/post_dentist.html">Add New Dentist</a>
+                    <a class="dropdown-item" href="/get_all_dentists.html">List Dentists</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPaciente" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Patients</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownPaciente">
-                    <a class="dropdown-item" href="post_patient.html">Add New Patient</a>
-                    <a class="dropdown-item" href="get_all_patients.html">List Patients</a>
+                    <a class="dropdown-item" href="/post_patient.html">Add New Patient</a>
+                    <a class="dropdown-item" href="/get_all_patients.html">List Patients</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -43,6 +43,24 @@
 </nav>
 
 <h1>Dental Clinic DH - Home</h1>
-
+<div class ="container">
+    <ul class="nav nav-pills" style="display:flex; flex-direction:column;">
+        <h4>Appointments</h4>
+        <li class="nav-item appointmentsLi">
+            <a class="nav-link" href="/post_appointment.html">Create Appointment</a>
+            <a class="nav-link" href="/get_all_appointments.html">Appointments List</a>
+        </li>
+        <h4>Dentists</h4>
+        <li class="nav-item dentistsLi">
+            <a class="nav-link" href="/post_dentist.html">Register Dentist</a>
+            <a class="nav-link" href="/get_all_dentists.html">Dentists List</a>
+        </li>
+        <h4>Patients</h4>
+        <li class="nav-item patientsLi">
+            <a class="nav-link" href="/post_patient.html">Register Patient</a>
+            <a class="nav-link" href="/get_all_patients.html">Patients List</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
