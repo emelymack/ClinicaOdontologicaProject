@@ -1,0 +1,7 @@
+[2022-07-09 21:10:11] [ INFO ] [Dentist:47] New dentist created with id: 1
+[2022-07-09 21:24:05] [ ERROR] [Dentist:37] Dentist search --> NOT FOUND.
+[2022-07-09 21:33:10] [ INFO ] [Dentist:47] New dentist created with id: 1
+[2022-07-09 21:33:55] [ INFO ] [Dentist:49] New patient created with id: 1
+[2022-07-09 21:34:38] [ ERROR] [Dentist:39] Patient search — id: 3 --> NOT FOUND.
+[2022-07-09 21:37:32] [ INFO ] [Dentist:47] New dentist created with id: 1
+[2022-07-09 21:38:24] [ INFO ] [Dentist:73] Dentist with id: '1' has been successfully deleted from the database

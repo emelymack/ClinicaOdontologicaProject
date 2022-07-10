@@ -40,8 +40,8 @@ public class AppointmentController {
         if(appointmentSearch.isPresent()){
             return ResponseEntity.ok(appointmentSearch.get());
         } else {
-            logger.error("Appointment searched does not exist.");
-            throw new ResourceNotFoundException("Appointment with id "+id+" doesn't exist.");
+            logger.error("Appointment search — id: "+id+" --> NOT FOUND.");
+            throw new ResourceNotFoundException("Appointment with id "+id+" does not exist in our database.");
         }
     }
 
@@ -56,8 +56,8 @@ public class AppointmentController {
         if(appointmentSearch.isPresent()){
             return ResponseEntity.ok(appointmentService.updateAppointment(appointment));
         } else {
-            logger.error("Appointment required for UPDATE does not exist.");
-            throw new ResourceNotFoundException("Appointment with id '"+appointment.getId()+"' doesn't exist.");
+            logger.error("Appointment required for UPDATE — id: "+appointment.getId()+" --> NOT FOUND.");
+            throw new ResourceNotFoundException("Appointment with id '"+appointment.getId()+"' does not exist in our database.");
         }
     }
 
@@ -67,10 +67,11 @@ public class AppointmentController {
         Optional<Appointment> appointmentSearch = appointmentService.findById(id);
         if(appointmentSearch.isPresent()){
             appointmentService.deleteAppointment(id);
+            logger.info("Appointment with id: '"+id+"' has been successfully deleted from the database");
             return ResponseEntity.ok("Appointment with id '"+id+"' has been successfully deleted from the database.");
         } else{
-            logger.error("Appointment required for DELETE does not exist.");
-            throw new ResourceNotFoundException("Appointment with id '"+id+"' doesn't exist.");
+            logger.error("Appointment required for DELETE — id: "+id+" --> NOT FOUND.");
+            throw new ResourceNotFoundException("Appointment with id '"+id+"' does not exist in our database.");
         }
     }
 }

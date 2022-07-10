@@ -7,10 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/js_dentists/get_all_dentists.js"></script>
-    <script type="text/javascript" src="/js/js_dentists/dentist_delete.js"></script>
-    <script type="text/javascript" src="/js/js_dentists/update_dentist.js"></script>
-    <title>Dentists List</title>
+    <script type="text/javascript" src="/js/js_appointments/get_all_appointments.js"></script>
+    <script type="text/javascript" src="/js/js_appointments/delete_appointment.js"></script>
+    <script type="text/javascript" src="/js/js_appointments/update_appointment.js"></script>
+    <title>Appointments List</title>
 </head>
 <body>
 
@@ -38,7 +38,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAppoint" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAppoint">
                     <a class="dropdown-item" href="/post_appointment.html">Add New Appointment</a>
-                    <a class="dropdown-item" href="/get_all_appointments.html">List Appointments</a>
+                    <a class="dropdown-item active" href="/get_all_appointments.html">List Appointments</a>
                 </div>
             </li>
         </ul>
@@ -48,18 +48,18 @@
 <div class="container" style="margin-top:20px">
     <div class="row">
         <div class="col-sm">
-            <h2>Dentists</h2>
-            <table class="table" style="margin-top:20px" id="dentistTable">
+            <h2>Appointments</h2>
+            <table class="table" style="margin-top:20px" id="appointmentTable">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Surname</th>
-                    <th>Name</th>
-                    <th>License</th>
+                    <th>Patient</th>
+                    <th>Dentist</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody id="dentistTBody"></tbody>
+                <tbody id="appointmentTBody"></tbody>
             </table>
 
         </div>
