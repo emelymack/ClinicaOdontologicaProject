@@ -75,5 +75,34 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-sm-6" style="display:none; margin-top:20px; background-color:#e6fffa; width: 800px; margin: 0 auto;"
+         id="div_appointment_updating">
+        <h6>Update Appointment</h6>
+        <form id="update_appointment_form">
+            <div class="form-group">
+                <label>ID:</label>
+                <input class="form-control" type="number" id="appointment_id" readonly>
+            </div>
+            <div class="form-group">
+                <label>Patient ID:</label>
+                <input class="form-control" type="number" id="patient_id" placeholder="Patient ID">
+            </div>
+            <div class="form-group">
+                <label>Dentist ID:</label>
+                <input class="form-control" type="number" id="dentist_id" placeholder="Dentist ID">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input class="form-control" type="date" id="date" placeholder="Date">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-update-appointment">Update</button>
+            <button type="button" class="btn btn-secondary" id="btn-update-cancel">Cancel</button>
+        </form>
+
+    </div>
+</div>
 </body>
 </html>

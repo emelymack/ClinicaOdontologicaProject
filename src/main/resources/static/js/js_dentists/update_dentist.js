@@ -29,6 +29,11 @@ window.addEventListener('load', ()=>{
         .then(data => console.log(data))
     })
 
+    const btnCancel = document.querySelector('#btn-update-cancel');
+        btnCancel.addEventListener('click', () => {
+            document.querySelector('#div_dentist_updating').style.display="none";
+        })
+
 })
 
 //It's the function that executes when the user clicks on a dentist ID from the list
