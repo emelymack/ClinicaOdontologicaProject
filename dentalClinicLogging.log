@@ -60,3 +60,9 @@
 [2022-07-12 16:29:52] [ INFO ] [DentistController:47] New dentist created with id: 1
 [2022-07-12 16:30:05] [ INFO ] [AppointmentController:50] New appointment created with id: 1
 [2022-07-12 16:30:18] [ INFO ] [AppointmentController:75] Appointment with id: '1' has been successfully deleted from the database
+[2022-07-12 18:32:47] [ INFO ] [DentistController:47] New dentist created with id: 1
+[2022-07-12 19:38:01] [ INFO ] [DentistController:47] New dentist created with id: 1
+[2022-07-12 19:38:40] [ INFO ] [DentistController:73] Dentist with id: '1' has been successfully deleted from the database
+[2022-07-12 19:38:54] [ INFO ] [PatientController:49] New patient created with id: 1
+[2022-07-12 19:39:44] [ INFO ] [DentistController:47] New dentist created with id: 2
+[2022-07-12 19:40:22] [ INFO ] [AppointmentController:50] New appointment created with id: 3
