@@ -8,6 +8,7 @@ import com.dh.clinicaOdontologicaProject.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,7 @@ public class AppointmentService implements IAppointmentService{
     public boolean isAppointmentDataCorrect(Appointment appointment){
         boolean respPatient = false;
         boolean respDentist = false;
-        if(appointment != null && appointment.getDate() != null){
+        if(appointment != null && appointment.getDate().isAfter(LocalDate.now())){
             if(patientRepository.findById(appointment.getPatient().getId()).isPresent()){
                 respPatient = true;
             }

@@ -26,28 +26,31 @@ window.addEventListener('load', function (){
         }
 
       fetch(url, settings)
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            let successAlert = '<div class = "alert alert-success alert-dismissible>' +
-                '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-                '<strong>Appointment saved successfully!</strong></div>'
+      .then(response =>{
+        if(!response.ok){
+            throw new Error(response.status)
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log(data);
+        let successAlert = '<div class = "alert alert-success alert-dismissible>' +
+                           '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                           '<strong>Appointment saved successfully!</strong></div>'
 
-            document.querySelector('#response').style.display = "block";
-            document.querySelector('#response').innerHTML = successAlert;
+        document.querySelector('#response').style.display = "block";
+        document.querySelector('#response').innerHTML = successAlert;
 
-            form.reset();
-        })
-        .catch(err => {
-            console.error(err)
-            let errorAlert = '<div class="alert alert-danger alert-dismissible">'
-            +'<button type="button" class="close" data-dismiss="alert">&times;</button>'
-            +'<strong>Error. Try again.</strong></div>'
+        form.reset();
+      })
+      .catch(err => {
+        let errorAlert = '<div class="alert alert-danger alert-dismissible">'+
+                         '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                         '<strong>Error! Some data is incorrect.<br> Try again.</strong></div>'
 
-            document.querySelector('#response').style.display = "block";
-            document.querySelector('#response').innerHTML = errorAlert;
-
-            form.reset();
-        });
-   });
-});
+        document.querySelector('#response').style.display = "block";
+        document.querySelector('#response').innerHTML = errorAlert;
+        form.reset();
+      })
+   })
+})

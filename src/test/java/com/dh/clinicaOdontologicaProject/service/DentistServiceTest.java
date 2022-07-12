@@ -1,6 +1,7 @@
-package com.dh.clinicaOdontologicaProject;
+package com.dh.clinicaOdontologicaProject.service;
 import com.dh.clinicaOdontologicaProject.entity.Dentist;
 import com.dh.clinicaOdontologicaProject.service.IDentistService;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
@@ -54,5 +54,14 @@ public class DentistServiceTest {
     dentistService.updateDentist(dentistTest2);
     Optional<Dentist> dentistSearch = dentistService.findById(idSearch);
     assertEquals("Rodríguez", dentistSearch.get().getSurname());
+    }
+
+    @Test
+    @Order(5)
+    public void deleteDentistTest(){
+        Long idSearch = 1L;
+        dentistService.deleteDentist(idSearch);
+        Optional<Dentist> dentistSearch = dentistService.findById(idSearch);
+        assertFalse(dentistSearch.isPresent());
     }
 }

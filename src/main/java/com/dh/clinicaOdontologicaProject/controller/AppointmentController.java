@@ -1,16 +1,14 @@
 package com.dh.clinicaOdontologicaProject.controller;
 
 import com.dh.clinicaOdontologicaProject.entity.Appointment;
-import com.dh.clinicaOdontologicaProject.entity.Dentist;
 import com.dh.clinicaOdontologicaProject.entity.Patient;
 import com.dh.clinicaOdontologicaProject.exceptions.BadRequestException;
 import com.dh.clinicaOdontologicaProject.exceptions.ResourceNotFoundException;
 import com.dh.clinicaOdontologicaProject.service.DentistService;
 import com.dh.clinicaOdontologicaProject.service.IAppointmentService;
-import com.dh.clinicaOdontologicaProject.service.PatientServiceImpl;
+import com.dh.clinicaOdontologicaProject.service.PatientService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +23,7 @@ public class AppointmentController {
     @Autowired
     private IAppointmentService appointmentService;
     @Autowired
-    private PatientServiceImpl patientService;
+    private PatientService patientService;
     @Autowired
     private DentistService dentistService;
 
@@ -47,7 +45,14 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<Appointment> postNewAppointment(@RequestBody Appointment appointment) throws BadRequestException {
-        return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
+        ResponseEntity<Appointment> res = ResponseEntity.ok(appointmentService.saveAppointment(appointment));
+        if(res.getStatusCode().is2xxSuccessful()){
+            logger.info("New appointment created with id: "+appointment.getId());
+            return res;
+        } else{
+            logger.error("Appointment post --> FAILED.");
+            throw new BadRequestException("Request failed. Try again");
+        }
     }
 
     @PutMapping

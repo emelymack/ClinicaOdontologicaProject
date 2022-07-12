@@ -1,14 +1,7 @@
 package com.dh.clinicaOdontologicaProject.entity;
 
-import com.dh.clinicaOdontologicaProject.repository.PatientRepository;
-import com.dh.clinicaOdontologicaProject.service.DentistService;
-import com.dh.clinicaOdontologicaProject.service.IDentistService;
-import com.dh.clinicaOdontologicaProject.service.IPatientService;
-import com.dh.clinicaOdontologicaProject.service.PatientServiceImpl;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "Appointments")
@@ -35,6 +28,12 @@ public class Appointment {
     //constructors
     public Appointment(){}
     public Appointment(Patient patient, Dentist dentist, LocalDate date) {
+        this.patient = patient;
+        this.dentist = dentist;
+        this.date = date;
+    }
+    public Appointment(Long id, Patient patient, Dentist dentist, LocalDate date) {
+        this.id = id;
         this.patient = patient;
         this.dentist = dentist;
         this.date = date;

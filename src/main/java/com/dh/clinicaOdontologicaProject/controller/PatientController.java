@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
-    private static final Logger logger = Logger.getLogger(Dentist.class);
+    private static final Logger logger = Logger.getLogger(PatientController.class);
 
     @Autowired
     private IPatientService patientService;

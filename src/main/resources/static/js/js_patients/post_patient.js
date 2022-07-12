@@ -44,7 +44,7 @@ window.addEventListener('load', function (){
         .catch(err => {
             let errorAlert = '<div class="alert alert-danger alert-dismissible">'
             +'<button type="button" class="close" data-dismiss="alert">&times;</button>'
-            +'<strong>Error. Try again.</strong></div>'
+            +'<strong>Error! Some data is incorrect.<br> Try again.</strong></div>'
 
             document.querySelector('#response').style.display = "block";
             document.querySelector('#response').innerHTML = errorAlert;

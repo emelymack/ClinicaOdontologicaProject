@@ -48,6 +48,15 @@ public class Patient {
         this.entryDate = entryDate;
         this.address = address;
     }
+    public Patient(Long id, String surname, String name, String email, Integer dni, LocalDate entryDate, Address address) {
+        this.id = id;
+        this.surname = surname;
+        this.name = name;
+        this.email = email;
+        this.dni = dni;
+        this.entryDate = entryDate;
+        this.address = address;
+    }
 
     //getters & setters
     public Long getId() {
