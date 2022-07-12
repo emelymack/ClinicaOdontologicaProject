@@ -5,7 +5,6 @@ import com.dh.clinicaOdontologicaProject.entity.Appointment;
 import com.dh.clinicaOdontologicaProject.entity.Dentist;
 import com.dh.clinicaOdontologicaProject.entity.Patient;
 import com.dh.clinicaOdontologicaProject.exceptions.BadRequestException;
-import com.dh.clinicaOdontologicaProject.repository.PatientRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,20 +20,35 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppointmentServiceTest {
 
         @Autowired
-        IAppointmentService appointmentService;
-
-        public Patient patientTestAppmt = new Patient(2L,"Abraham", "Silvina", "silvina@test.com", 197586, LocalDate.of(2022,4,13), new Address("Pellegrini",111,"Córdoba","Córdoba"));
-        public Dentist dentistTestAppmt = new Dentist(2L,"Miranda", "Rodrigo", 112233);
+        private IAppointmentService appointmentService;
+        @Autowired
+        private IPatientService patientService;
+        @Autowired
+        private IDentistService dentistService;
 
         @Test
         @Order(1)
         public void addAppointmentTest() throws BadRequestException {
             System.out.println("TEST: adding new Appointment...");
-            Appointment appointmentTest = new Appointment(patientTestAppmt, dentistTestAppmt, LocalDate.of(2022,7,12));
+
+            Patient patientNew = new Patient("Abraham", "Silvina", "silvina@test.com", 197586, LocalDate.of(2022,4,13),
+                    new Address("Pellegrini",111,"Córdoba","Córdoba"));
+            patientService.savePatient(patientNew);
+            Dentist dentistNew = new Dentist("Miranda", "Rodrigo", 112233);
+            dentistService.saveDentist(dentistNew);
+
+            Optional<Patient> patientTestAppmt = patientService.findById(1L);
+            System.out.println(patientTestAppmt);
+            Optional<Dentist> dentistTestAppmt = dentistService.findById(1L);
+            System.out.println(dentistTestAppmt);
+
+            Appointment appointmentTest = new Appointment(patientTestAppmt.get(), dentistTestAppmt.get(), LocalDate.of(2022,8,20));
             appointmentService.saveAppointment(appointmentTest);
             //search for appointmentTest
             Optional<Appointment> appointmentTestFound = appointmentService.findById(1L);
             assertTrue(appointmentTestFound.isPresent());
+            assertEquals(197586, appointmentTestFound.get().getPatient().getDni());
+            assertEquals(112233, appointmentTestFound.get().getDentist().getLicense());
         }
 
         @Test
@@ -59,10 +73,12 @@ class AppointmentServiceTest {
         public void updateAppointmentTest(){
             Long idSearch = 1L;
             System.out.println("Updating appointment date...");
-            Appointment appointmentTest2 = new Appointment(idSearch,patientTestAppmt,dentistTestAppmt,LocalDate.of(2022,8,1));
+            Patient patientTestAppmt = patientService.findById(1L).get();
+            Dentist dentistTestAppmt = dentistService.findById(1L).get();
+            Appointment appointmentTest2 = new Appointment(idSearch,patientTestAppmt,dentistTestAppmt,LocalDate.of(2022,8,30));
             appointmentService.updateAppointment(appointmentTest2);
             Optional<Appointment> appointmentSearch = appointmentService.findById(idSearch);
-            assertEquals(LocalDate.of(2022,8,1), appointmentSearch.get().getDate());
+            assertEquals(LocalDate.of(2022,8,30), appointmentSearch.get().getDate());
         }
 
         @Test

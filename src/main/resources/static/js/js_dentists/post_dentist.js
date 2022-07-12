@@ -40,8 +40,6 @@ window.addEventListener('load', function (){
 
             document.querySelector('#response').style.display = "block";
             document.querySelector('#response').innerHTML = errorAlert;
-
-            form.reset();
         });
    });
 });

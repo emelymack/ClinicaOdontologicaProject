@@ -53,7 +53,7 @@ public class AppointmentService implements IAppointmentService{
 
     public boolean isAppointmentDataCorrect(Appointment appointment){
         boolean respPatient = false;
-        boolean respDentist = false;
+        boolean respDentist = true;
         if(appointment != null && appointment.getDate().isAfter(LocalDate.now())){
             if(patientRepository.findById(appointment.getPatient().getId()).isPresent()){
                 respPatient = true;
